@@ -1,0 +1,263 @@
+:root {
+    --primary-color: #ee4d2d;
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #333;
+    --border-color: #dbdbdb;
+    --star-gold-color: #ffce3e;
+
+    --header-height: 128px;
+    --navbar-height: 34px;
+    --header-with-search-height: calc(var(--header-height) - var(--navbar-height));
+    --header-sort-bar-height: 46px;
+}
+
+* {
+    box-sizing: inherit; /*inherit là kế thừa từ thẻ chứa nó*/
+}
+
+html {
+    font-size: 62.5%; /*trong TH này 1rem = 10px*/
+    line-height: 1.6rem; /*1.6rem = 16px trong TH này*/
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box; /*tât cả thẻ html sẽ đc kế thừa thuộc tính boder box do inherit đc khai báo ở trên*/
+}
+
+/*Responsive
+Nguyên tắc 3 cấp :
+.grid {
+    .row {
+        .column {
+
+        }
+        .column {
+
+        }
+    }
+
+    .row {
+        .column {
+
+        }
+        .column {
+
+        }
+    }
+}
+trong grid có nhiều row và trong row có nhiều colunm
+*/
+
+
+/*Responsive*/
+
+.grid__row {
+    display: flex;
+    flex-wrap: wrap; /*các thẻ nằm trong class này sẽ nằm trên cùng 1 hàng ngang
+    nếu tổng đỘ dài các item con dài hơn độ dài của class thì nó sẽ tự nhảy xuống dòng*/
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+/*Test*/
+.grid__column-2 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 16.6667%;
+}
+
+.grid__column-2-4 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 20%;
+}
+
+.grid__column-10 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 83.3334%;
+}
+
+
+/*Animation*/
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes growth {
+    from {
+        transform: scale(var(--growth-from));
+    }
+    to {
+        transform: scale(var(--growth-to));
+
+    }
+}
+
+/*Modal CSS*/
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    animation: fadeIn linear 0.1s;
+}
+
+.modal__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0 , 0 , 0 , 0.4);
+    /* z-index: 2;  */
+    /*Mặc định các item sẽ có z-index bằng 0,cái nào có giá trị z-index lớn hơn thì sẽ nổi lên trên
+    VD modal-overlay có giá trị z-index là 2 còn modal-body 
+    có z-index là 3 thì modal-body sẽ nổi lên trên , che đi 
+    modal-overlay*/
+}
+
+.modal__body {
+    --growth-from: 0.7;
+    --growth-to: 1; /*tức là nó sẽ chuyển từ kích thước 70% 
+    đến kích thc nguyên vẹn của nó là 1*/
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    animation: growth linear .1s;
+}
+
+/*Button style*/
+.btn {
+    min-width: 124px;
+    height: 34px;
+    background-color: var(--white-color);
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    padding: 0 12px;
+    outline: none;
+    cursor: pointer;
+    color: var(--text-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.6rem;
+}
+
+.btn.btn--normal:hover {
+    background-color: rgba(0 , 0 , 0 , 0.05);
+}
+
+.btn.btn--size-s {
+    height: 32px;
+    font-size: 12px;
+    padding: 0 8px;
+}
+
+.btn.btn--primary {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
+.btn.btn--disabled {
+    cursor: default;
+    background-color: #999;
+    color: #ccc;
+}
+
+/*Selection*/
+
+.select-input {
+    position: relative;
+    min-width: 200px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 2px;
+    background-color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.select-input__label {
+    font-size: 1.4rem;
+}
+
+.select-input__icon {
+    font-size: 1.4rem;
+    color: rgb(131, 131, 131);
+    position: relative;
+    top: 1px;
+}
+
+.select-input:hover .select-input__list {
+    display: block;
+}
+
+.select-input__list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25px;
+    border-radius: 2px;
+    background-color: var(--white-color);
+    padding: 8px 16px;
+    list-style: none;
+    display: none;
+    z-index: 1;
+}
+
+.select-input__link {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    padding: 4px 0;
+}
+
+.select-input__link:hover {
+    color: var(--primary-color);
+}
+
+/*pagination*/
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.pagination-item {
+    margin: 0 12px;
+}
+
+.pagination-item--active .pagination-item__link {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
+.pagination-item--active .pagination-item__link:hover {
+    opacity: 0.9;
+    transition: 0.2s;
+}
+
+.pagination-item__link {
+    --height: 30px;
+    display: block;
+    font-weight: 300;
+    text-decoration: none;
+    font-size: 1.8rem;
+    color: #939393;
+    min-width: 40px;
+    height: var(--height);
+    text-align: center;
+    line-height: var(--height);
+    border-radius: 2px;
+}
